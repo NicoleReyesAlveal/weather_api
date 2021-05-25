@@ -1,10 +1,21 @@
 const express = require('express');
 const https = require('https');
+const cityModel = require('../models/city.js');
 
 const app = express()
 
 app.get('/', (req, res) => {
   res.send('root endpoint')
+})
+
+app.post('/city', async (req, res) => {
+    const city = new cityModel(req.body);
+    try {
+        await city.save();
+        res.status(201).send(city);
+    } catch (error) {
+        res.status(500).send(error);
+    }
 })
 
 app.post('/', (req, res) => {
