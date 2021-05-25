@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const app = express()
 const port = 3000
 
+require('dotenv').config()
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -15,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     console.log(req.body);
     const city = req.body.city;
-    const appId = "aff656387ea226b6d6b8022b7c18fdc4";
+    const appId = process.env.OPEN_WEATHER_API_KEY;
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + appId + "&units=metric";
     https.get(url, (response) => {
         if( response.statusCode === 200) {
