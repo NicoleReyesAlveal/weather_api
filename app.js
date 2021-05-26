@@ -12,6 +12,7 @@ require('dotenv').config()
 //Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//sets X-Response-Time to Headers
 app.use(responseTime());
 
 //MongoDB conn string
