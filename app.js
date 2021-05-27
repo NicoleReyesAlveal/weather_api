@@ -5,7 +5,6 @@ const responseTime = require('response-time');
 const cityRouter = require('./routers/city-router.js');
 
 const app = express()
-const port = 3000
 
 require('dotenv').config()
 
@@ -24,10 +23,8 @@ mongoose.connect(uri, {
                         useFindAndModify: false},
                         (err, client) => {
     console.log('Connected to mongoDB');
-    app.listen(port, () => {
-      console.log(`Listening at http://localhost:${port}`)
-    })
 })
 
-
 app.use(cityRouter);
+
+module.exports = app;

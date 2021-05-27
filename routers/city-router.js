@@ -59,4 +59,8 @@ app.post('/temperature', (req, res) => {
     });
  });
 
+app.get('/test', async (req, res) => {
+  res.json({message: 'pass!'})
+})
+
  module.exports = app;
