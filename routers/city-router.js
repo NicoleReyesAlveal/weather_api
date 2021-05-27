@@ -21,10 +21,9 @@ app.get('/temperature', (req, res) => {
                             temp_max: weatherData.main.temp_max
                 });
             })
-            } else {
-                res.status(404).send('City not found')
-            }
-
+        } else {
+            res.status(404).send('City not found')
+        }
     });
  });
 
@@ -54,10 +53,9 @@ app.post('/temperature', (req, res) => {
                             temp_max: weatherData.main.temp_max
                 });
             })
-            } else {
-                res.status(404).send('City not found')
-            }
-
+        } else {
+            res.status(404).send('City not found')
+        }
     });
  });
 
