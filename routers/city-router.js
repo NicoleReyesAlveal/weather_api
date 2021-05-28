@@ -9,10 +9,14 @@ app.get('/temperature', (req, res) => {
     const city = req.body.city;
     const app_id = process.env.OPEN_WEATHER_API_KEY;
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + app_id + "&units=metric";
+//OpenWeather connection
     https.get(url, (response) => {
         if (response.statusCode === 200) {
             response.on("data", (data) => {
                 const weatherData = JSON.parse(data);
+                console.log('Data from OpenWeatherMap');
+                console.log('For more information see https://openweathermap.org/api');
+//Send city temperature
                 return res.status(200).send({
                             city: weatherData.name,
                             country: weatherData.sys.country,
@@ -23,6 +27,8 @@ app.get('/temperature', (req, res) => {
             })
         } else {
             res.status(404).send('City not found')
+            console.log('City not found');
+
         }
     });
  });
@@ -45,7 +51,7 @@ app.post('/temperature', (req, res) => {
                 });
                 city.save();
                 console.log('City saved to DB');
-                return res.status(201).send({
+                return res.status(201).json({
                             city: weatherData.name,
                             country: weatherData.sys.country,
                             temp: weatherData.main.temp,
@@ -60,7 +66,8 @@ app.post('/temperature', (req, res) => {
  });
 
 app.get('/test', async (req, res) => {
-  res.json({message: 'pass!'})
+//Test endpoint to try '../tests/city.test.js'
+  res.json({message: 'Test'})
 })
 
  module.exports = app;
