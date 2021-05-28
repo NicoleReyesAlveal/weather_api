@@ -17,12 +17,13 @@ After cloning the repository,  install the dependencies
   ```
 running the following command:  
 `$ npm install <dependency_name>`
+or run `$npm i` for short
 
 Add your OpenWeather API key in .env_sample file:
 ` OPEN_WEATHER_API_KEY=YOUR_API_KEY`
 
 Create the Docker container with the following command: 
-`$  docker run -d  --name mongo-db  -p 27888:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=pass mongo`
+`$ docker run -d  --name mongo-db  -p 27888:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=pass mongo`
 
 Build the container with this command: 
 `$ docker-compose up -d`
@@ -33,4 +34,7 @@ To run the server:
 Once the server is running, you should see this message:  
 `Listening at http://localhost:3000`  
 
-Finally, use the endpoints with Postman or Insomnia, they're in the router file.
+To run the tests:
+`$ npm run test`
+
+Finally, use the endpoints with Postman or Insomnia, they're in the routers folder.
